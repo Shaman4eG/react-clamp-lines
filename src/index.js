@@ -44,6 +44,13 @@ export default class ClampLines extends PureComponent {
       window.removeEventListener('resize', this.debounced);
     }
   }
+  
+  componentDidUpdate (prevProps) {
+    if (prevProps.text !== this.props.text) {
+      this.original = this.props.text;
+      this.clampLines();
+    }
+  }
 
   debounce(func, wait, immediate) {
     let timeout;
